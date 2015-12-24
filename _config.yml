@@ -2,12 +2,13 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://b1412.github.io
-title: Leon`s Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://blog.kidzhou.me
+title: Leon's Blog
+subtitle: Enjoy life, enjoy coding.
+author: Leon Zhou
 simple_search: https://www.google.com/search
-description:
+description: Leon's Blog
+keywords: Leon Zhou, Clojure, Java, ClojureScript
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -64,13 +65,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: b1412
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: kidzhou
 twitter_tweet_button: true
 
 # Google +1
@@ -92,7 +93,7 @@ delicious_count: 3
 
 # Disqus Comments
 disqus_short_name:
-disqus_show_comment_count: false
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
