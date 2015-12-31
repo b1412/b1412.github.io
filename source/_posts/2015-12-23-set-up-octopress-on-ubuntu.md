@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Set up octopress on Ubuntu14.04/Mac OS10.10"
+title: "Set up octopress on Ubuntu14.04/OS X10.10"
 date: 2015-12-23 23:36:53 +0800
 comments: true
 categories: Octopress, Markdown
@@ -59,7 +59,7 @@ ruby --version
 ```
 
 
-##Prerequisites on Mac OS
+##Prerequisites on OS X
 
 ###Install homebrew
 
@@ -240,6 +240,8 @@ rake deploy
 
 * http://codelife.me/blog/2012/09/02/custom-domain-for-octopress
 
-* https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/
+* https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac
 
-* https://www.moncefbelyamani.com/how-to-install-and-configure-octopress-on-a-mac/
+* https://www.moncefbelyamani.com/how-to-install-and-configure-octopress-on-a-mac
+
+* http://asaf.github.io/blog/2013/07/08/blogging-with-octopress-add-comments
