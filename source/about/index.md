@@ -8,7 +8,7 @@ footer: true
 
 ZHOU Lei (周磊) is my Chinese name, Leon ZHOU is my English name, b1412 is my commonly-used ID on the Internet.
 
-* Started Java programming in production in 2010, become team leader in 2011.
+* Started Java programming in production in 2010, became team leader in 2011.
 
 * 2.5 years in traditional IT companies and 1.5 years in an [Internet company](http://uflyfan.com "http://uflyfan.com").
 
