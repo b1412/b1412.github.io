@@ -9,7 +9,7 @@ keywords: Clojure Korma
 When assign resources to a role, multiple resources should be edited in one http request.
 
 
-In back-end, we must distinguish  the new role-resources to create, the exist role-resources to update and the unuse role-resources to delete, which  could make create functiontoo complex.Acturally,it is a incremental updates solution, in [Clojure Web Admin]() we add fingerprint column in tables in which need 。 Besides, fingerprint can be used in big data update.
+In back-end, we must tell  the new role-resources to create, the exist role-resources to update and the unuse role-resources to delete, which  could make create functiontoo complex.Acturally,it is a incremental updates solution, in [Clojure Web Admin]() we add fingerprint column in tables in which need 。 Besides, fingerprint can be used in big data update.
 
 When using fingerprint, time of creating would increase due to the time of  fingerprint calculation, however time of updating would decrease because it only compare fingerprint not all the columns.
 
