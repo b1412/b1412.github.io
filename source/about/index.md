@@ -19,7 +19,6 @@ ZHOU Lei (周磊) is my Chinese name, Leon ZHOU is my English name, b1412 is my 
 * Learning Clojure and start new opensource project [`Clojure Web Admin`](https://github.com/b1412/clojure-web-admin "A metadata-driven clojure(script)-based web admin app") for practice.
 
 
-Recently I am looking for a FP programming job (Clojure is the first choice).
 
 
 
@@ -29,4 +28,3 @@ Contact
 * Twitter: [kidzhou](https://twitter.com/kidzhou)
 * Facebook [周磊](https://www.facebook.com/profile.php?id=100007909062468)
 
-Checkout out my  [CV](/cv) to know more about me.
