@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: clojure | Leon's Blog]]></title>
-  <link href="http://blog.kidzhou.me/blog/categories/clojure/atom.xml" rel="self"/>
-  <link href="http://blog.kidzhou.me/"/>
-  <updated>2019-11-04T17:55:40+13:00</updated>
-  <id>http://blog.kidzhou.me/</id>
+  <title><![CDATA[Category: Clojure | Leon's Blog]]></title>
+  <link href="http://blog.leonzhou.info/blog/categories/clojure/atom.xml" rel="self"/>
+  <link href="http://blog.leonzhou.info/"/>
+  <updated>2019-11-11T21:35:21+13:00</updated>
+  <id>http://blog.leonzhou.info/</id>
   <author>
     <name><![CDATA[Leon Zhou]]></name>
     
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - React-related projects in ClojureScript]]></title>
-    <link href="http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript/"/>
-    <updated>2016-01-25T22:15:12+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript</id>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - React-related Projects in ClojureScript]]></title>
+    <link href="http://blog.leonzhou.info/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript/"/>
+    <updated>2016-01-25T17:15:12+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/b1412/clojure-web-admin">CWA</a>(Clojure Web Admin) uses React and Bootstrap3  as a view layer with Reagent &amp; Re-frame.</p>
 
 <p>All the projects used in CWA are shwon as bellow:</p>
@@ -85,10 +85,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Clojure practice in 'Clojure Web Admin' - Incremental updates]]></title>
-    <link href="http://blog.kidzhou.me/blog/2015/12/29/incremental-updates/"/>
-    <updated>2015-12-29T04:14:12+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2015/12/29/incremental-updates</id>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - Incremental Updates]]></title>
+    <link href="http://blog.leonzhou.info/blog/2015/12/28/incremental-updates/"/>
+    <updated>2015-12-28T23:14:12+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2015/12/28/incremental-updates</id>
     <content type="html"><![CDATA[<p>When assign resources to a role, multiple resources should be edited in one http request.</p>
 
 <p>In back-end, we must tell  the new role-resources to create, the exist role-resources to update and the unuse role-resources to delete, which  could make create functiontoo complex.Acturally,it is a incremental updates solution, in <a href="">Clojure Web Admin</a> we add fingerprint column in tables in which need 。 Besides, fingerprint can be used in big data update.</p>
@@ -193,10 +193,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Clojure practice in 'Clojure Web Admin' - Dasherize Korma]]></title>
-    <link href="http://blog.kidzhou.me/blog/2015/12/29/dasherize-korma/"/>
-    <updated>2015-12-29T03:23:19+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2015/12/29/dasherize-korma</id>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - Dasherize Korma]]></title>
+    <link href="http://blog.leonzhou.info/blog/2015/12/28/dasherize-korma/"/>
+    <updated>2015-12-28T22:23:19+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2015/12/28/dasherize-korma</id>
     <content type="html"><![CDATA[<p>By default, Korma follows database convention using underscores  while Clojurians prefer kebab-case(lisp-case).</p>
 
 <p>In this post, the function/macro used in <a href="https://github.com/b1412/clojure-web-admin" title="https://github.com/b1412/clojure-web-admin">Clojure Web Admin</a> are dasherized by

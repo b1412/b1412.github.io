@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://blog.kidzhou.me/sitemap.xml 
+Sitemap: http://blog.leonzhou.info/sitemap.xml 

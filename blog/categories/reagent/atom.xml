@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: reagent | Leon's Blog]]></title>
-  <link href="http://blog.kidzhou.me/blog/categories/reagent/atom.xml" rel="self"/>
-  <link href="http://blog.kidzhou.me/"/>
-  <updated>2019-11-04T17:55:40+13:00</updated>
-  <id>http://blog.kidzhou.me/</id>
+  <title><![CDATA[Category: Reagent | Leon's Blog]]></title>
+  <link href="http://blog.leonzhou.info/blog/categories/reagent/atom.xml" rel="self"/>
+  <link href="http://blog.leonzhou.info/"/>
+  <updated>2019-11-11T21:35:21+13:00</updated>
+  <id>http://blog.leonzhou.info/</id>
   <author>
     <name><![CDATA[Leon Zhou]]></name>
     
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - React-related projects in ClojureScript]]></title>
-    <link href="http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript/"/>
-    <updated>2016-01-25T22:15:12+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript</id>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - React-related Projects in ClojureScript]]></title>
+    <link href="http://blog.leonzhou.info/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript/"/>
+    <updated>2016-01-25T17:15:12+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/b1412/clojure-web-admin">CWA</a>(Clojure Web Admin) uses React and Bootstrap3  as a view layer with Reagent &amp; Re-frame.</p>
 
 <p>All the projects used in CWA are shwon as bellow:</p>

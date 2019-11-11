@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: octopress, | Leon's Blog]]></title>
-  <link href="http://blog.kidzhou.me/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://blog.kidzhou.me/"/>
-  <updated>2019-11-04T17:55:40+13:00</updated>
-  <id>http://blog.kidzhou.me/</id>
+  <title><![CDATA[Category: Octopress, | Leon's Blog]]></title>
+  <link href="http://blog.leonzhou.info/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://blog.leonzhou.info/"/>
+  <updated>2019-11-11T21:35:21+13:00</updated>
+  <id>http://blog.leonzhou.info/</id>
   <author>
     <name><![CDATA[Leon Zhou]]></name>
     
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Set up octopress on Ubuntu14.04/OS X10.10]]></title>
-    <link href="http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu/"/>
-    <updated>2015-12-24T04:36:53+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu</id>
+    <title type="html"><![CDATA[Set Up Octopress on Ubuntu14.04/OS X10.10]]></title>
+    <link href="http://blog.leonzhou.info/blog/2015/12/23/set-up-octopress-on-ubuntu/"/>
+    <updated>2015-12-23T23:36:53+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2015/12/23/set-up-octopress-on-ubuntu</id>
     <content type="html"><![CDATA[<p>This is a step-by-step tutorial that you can follow to create your own blog by
 octopress on Ubuntu14.04 and host on GitHub.</p>
 
@@ -130,8 +130,8 @@ rake generate
 <h3>GitHub setup</h3>
 
 <ul>
-<li><p>Create a GitHub account and my account is <a href="https://GitHub.com/b1412" title="https://GitHub.com/b1412"><code>b1412</code></a>.</p></li>
-<li><p>Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is <a href="https://GitHub.com/b1412/b1412.GitHub.io" title="https://GitHub.com/b1412/b1412.GitHub.io"><code>b1412.GitHub.io</code></a></p></li>
+<li><p>Create a GitHub account and my account is <a href="https://github.com/b1412" title="https://github.com/b1412"><code>b1412</code></a>.</p></li>
+<li><p>Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is <a href="https://github.com/b1412/b1412.github.io" title="https://github.com/b1412/b1412.github.io"><code>b1412.github.io</code></a></p></li>
 </ul>
 
 
@@ -139,7 +139,7 @@ rake generate
 </code></pre>
 
 <p>The rake task will ask you for a URL of the GitHub repo. Copy the SSH or HTTPS URL from your newly created repository
-(in this case, <a href="https://GitHub.com/b1412/b1412.GitHub.io.git">https://GitHub.com/b1412/b1412.GitHub.io.git</a>) and paste it in as a response.</p>
+(in this case, git@github.com:b1412/b1412.github.io.git) and paste it in as a response.</p>
 
 <p>This will:</p>
 

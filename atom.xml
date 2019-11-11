@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Leon's Blog]]></title>
-  <link href="http://blog.kidzhou.me/atom.xml" rel="self"/>
-  <link href="http://blog.kidzhou.me/"/>
-  <updated>2019-11-04T17:55:40+13:00</updated>
-  <id>http://blog.kidzhou.me/</id>
+  <link href="http://blog.leonzhou.info/atom.xml" rel="self"/>
+  <link href="http://blog.leonzhou.info/"/>
+  <updated>2019-11-11T21:35:21+13:00</updated>
+  <id>http://blog.leonzhou.info/</id>
   <author>
     <name><![CDATA[Leon Zhou]]></name>
     
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - React-related projects in ClojureScript]]></title>
-    <link href="http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript/"/>
-    <updated>2016-01-25T22:15:12+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript</id>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - React-related Projects in ClojureScript]]></title>
+    <link href="http://blog.leonzhou.info/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript/"/>
+    <updated>2016-01-25T17:15:12+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/b1412/clojure-web-admin">CWA</a>(Clojure Web Admin) uses React and Bootstrap3  as a view layer with Reagent &amp; Re-frame.</p>
 
 <p>All the projects used in CWA are shwon as bellow:</p>
@@ -114,10 +114,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Clojure practice in 'Clojure Web Admin' - Incremental updates]]></title>
-    <link href="http://blog.kidzhou.me/blog/2015/12/29/incremental-updates/"/>
-    <updated>2015-12-29T04:14:12+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2015/12/29/incremental-updates</id>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - Incremental Updates]]></title>
+    <link href="http://blog.leonzhou.info/blog/2015/12/28/incremental-updates/"/>
+    <updated>2015-12-28T23:14:12+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2015/12/28/incremental-updates</id>
     <content type="html"><![CDATA[<p>When assign resources to a role, multiple resources should be edited in one http request.</p>
 
 <p>In back-end, we must tell  the new role-resources to create, the exist role-resources to update and the unuse role-resources to delete, which  could make create functiontoo complex.Acturally,it is a incremental updates solution, in <a href="">Clojure Web Admin</a> we add fingerprint column in tables in which need 。 Besides, fingerprint can be used in big data update.</p>
@@ -284,9 +284,9 @@
 
 <p>For example</p>
 
-<p><img src="http://blog.kidzhou.me/images/role-resources-before.png" alt="DNS configuration" /></p>
+<p><img src="http://blog.leonzhou.info/images/role-resources-before.png" alt="DNS configuration" /></p>
 
-<p><img src="http://blog.kidzhou.me/images/role-resources-after.png" alt="DNS configuration" /></p>
+<p><img src="http://blog.leonzhou.info/images/role-resources-after.png" alt="DNS configuration" /></p>
 
 <h2>Scenario</h2>
 
@@ -295,10 +295,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Clojure practice in 'Clojure Web Admin' - Dasherize Korma]]></title>
-    <link href="http://blog.kidzhou.me/blog/2015/12/29/dasherize-korma/"/>
-    <updated>2015-12-29T03:23:19+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2015/12/29/dasherize-korma</id>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - Dasherize Korma]]></title>
+    <link href="http://blog.leonzhou.info/blog/2015/12/28/dasherize-korma/"/>
+    <updated>2015-12-28T22:23:19+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2015/12/28/dasherize-korma</id>
     <content type="html"><![CDATA[<p>By default, Korma follows database convention using underscores  while Clojurians prefer kebab-case(lisp-case).</p>
 
 <p>In this post, the function/macro used in <a href="https://github.com/b1412/clojure-web-admin" title="https://github.com/b1412/clojure-web-admin">Clojure Web Admin</a> are dasherized by
@@ -413,10 +413,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Set up octopress on Ubuntu14.04/OS X10.10]]></title>
-    <link href="http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu/"/>
-    <updated>2015-12-24T04:36:53+13:00</updated>
-    <id>http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu</id>
+    <title type="html"><![CDATA[Set Up Octopress on Ubuntu14.04/OS X10.10]]></title>
+    <link href="http://blog.leonzhou.info/blog/2015/12/23/set-up-octopress-on-ubuntu/"/>
+    <updated>2015-12-23T23:36:53+08:00</updated>
+    <id>http://blog.leonzhou.info/blog/2015/12/23/set-up-octopress-on-ubuntu</id>
     <content type="html"><![CDATA[<p>This is a step-by-step tutorial that you can follow to create your own blog by
 octopress on Ubuntu14.04 and host on GitHub.</p>
 
@@ -459,7 +459,7 @@ octopress on Ubuntu14.04 and host on GitHub.</p>
 
 <p>At terminal window, click <code>Edit</code> > <code>Profile Preferences</code>, click on <code>Title and Command</code> tab and check <code>Run command as login shell</code>.</p>
 
-<p><img src="http://blog.kidzhou.me/images/terminal.png" alt="Terminal Screenshot" /></p>
+<p><img src="http://blog.leonzhou.info/images/terminal.png" alt="Terminal Screenshot" /></p>
 
 <h4>Logout and login</h4>
 
@@ -552,8 +552,8 @@ octopress on Ubuntu14.04 and host on GitHub.</p>
 <h3>GitHub setup</h3>
 
 <ul>
-<li><p>Create a GitHub account and my account is <a href="https://GitHub.com/b1412" title="https://GitHub.com/b1412"><code>b1412</code></a>.</p></li>
-<li><p>Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is <a href="https://GitHub.com/b1412/b1412.GitHub.io" title="https://GitHub.com/b1412/b1412.GitHub.io"><code>b1412.GitHub.io</code></a></p></li>
+<li><p>Create a GitHub account and my account is <a href="https://github.com/b1412" title="https://github.com/b1412"><code>b1412</code></a>.</p></li>
+<li><p>Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is <a href="https://github.com/b1412/b1412.github.io" title="https://github.com/b1412/b1412.github.io"><code>b1412.github.io</code></a></p></li>
 </ul>
 
 
@@ -562,7 +562,7 @@ octopress on Ubuntu14.04 and host on GitHub.</p>
 
 
 <p>The rake task will ask you for a URL of the GitHub repo. Copy the SSH or HTTPS URL from your newly created repository
-(in this case, <a href="https://GitHub.com/b1412/b1412.GitHub.io.git">https://GitHub.com/b1412/b1412.GitHub.io.git</a>) and paste it in as a response.</p>
+(in this case, git@github.com:b1412/b1412.github.io.git) and paste it in as a response.</p>
 
 <p>This will:</p>
 
@@ -641,7 +641,7 @@ The default file extension for new posts is markdown but you can configure that 
 
 <p>Register on <a href="https://disqus.com" title="https://disqus.com">Disqus</a></p>
 
-<p><img src="http://blog.kidzhou.me/images/disqus.png" alt="DNS configuration" /></p>
+<p><img src="http://blog.leonzhou.info/images/disqus.png" alt="DNS configuration" /></p>
 
 <p>Copy the <code>unique Disqus URL</code> to disqus_short_name in <code>_config.yml</code>.</p>
 
@@ -661,7 +661,7 @@ The default file extension for new posts is markdown but you can configure that 
 
 <p>For this blog, I only add a sub-domain.</p>
 
-<p><img src="http://blog.kidzhou.me/images/dns.png" title="dns" alt="DNS configuration" /></p>
+<p><img src="http://blog.leonzhou.info/images/dns.png" title="dns" alt="DNS configuration" /></p>
 
 <h4>Re-deploy</h4>
 
