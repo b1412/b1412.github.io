@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Leon's Blog]]></title>
+  <link href="http://blog.kidzhou.me/atom.xml" rel="self"/>
+  <link href="http://blog.kidzhou.me/"/>
+  <updated>2019-11-04T17:55:40+13:00</updated>
+  <id>http://blog.kidzhou.me/</id>
+  <author>
+    <name><![CDATA[Leon Zhou]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Clojure Practice in 'Clojure Web Admin' - React-related projects in ClojureScript]]></title>
+    <link href="http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript/"/>
+    <updated>2016-01-25T22:15:12+13:00</updated>
+    <id>http://blog.kidzhou.me/blog/2016/01/25/clojure-practice-in-clojure-web-admin-react-in-clojurescript</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/b1412/clojure-web-admin">CWA</a>(Clojure Web Admin) uses React and Bootstrap3  as a view layer with Reagent &amp; Re-frame.</p>
+
+<p>All the projects used in CWA are shwon as bellow:</p>
+
+<ul>
+<li><p><a href="https://reagent-project.github.io/index.html" title="https://reagent-project.github.io/index.html">Reagent</a></p>
+
+<p>Reagent provides a minimalistic interface between ClojureScript and React.</p></li>
+<li><p><a href="https://github.com/Day8/re-frame" title="https://github.com/Day8/re-frame">Re-frame</a></p>
+
+<p> Re-frame is a pattern for writing SPAs in ClojureScript, using Reagent with workflow as bellow:</p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>app-db  --&gt;  components  --&gt;  Hiccup  --&gt;  Reagent  --&gt;  VDOM  --&gt;  React  --&gt;  DOM
+</span><span class='line'> ^                                                                              |
+</span><span class='line'> |                                                                              v
+</span><span class='line'> handlers &lt;-----  router  &lt;-----------------------  (dispatch [event-id  event params])</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p><a href="https://react-bootstrap.github.io" title="https://react-bootstrap.github.io">React-Bootstrap</a></p>
+
+<p>  Bootstrap 3 components built with React.</p></li>
+<li><p><a href="https://github.com/reagent-project/reagent-forms" title="https://github.com/reagent-project/reagent-forms">Reagent-forms</a></p>
+
+<p> A ClojureScript library to provide form data bindings for Reagent.
+ In CWA, we have create some high-level abstract field types to make your life easier including Image ,Attachment, Enum, Lookup,etc.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='clojurescript'><span class='line'><span class="p">(</span><span class="kd">defmethod </span><span class="nv">init-field</span> <span class="ss">:image</span>
+</span><span class='line'>  <span class="p">[[</span><span class="nv">_</span> <span class="p">{</span><span class="ss">:keys</span> <span class="p">[</span><span class="nv">field</span> <span class="nv">id</span><span class="p">]</span> <span class="ss">:as</span> <span class="nv">attrs</span><span class="p">}</span> <span class="ss">:as</span> <span class="nv">component</span><span class="p">]</span> <span class="p">{</span><span class="ss">:keys</span> <span class="p">[</span><span class="nv">doc</span><span class="p">]</span> <span class="ss">:as</span> <span class="nv">opts</span><span class="p">}]</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">upload-path</span> <span class="p">(</span><span class="nf">reagent/atom</span>
+</span><span class='line'>                     <span class="p">((</span><span class="nb">keyword </span><span class="p">(</span><span class="nb">str </span><span class="p">(</span><span class="nb">name </span><span class="nv">id</span><span class="p">)</span> <span class="s">&quot;.path&quot;</span><span class="p">))</span> <span class="o">@</span><span class="nv">doc</span><span class="p">))]</span>
+</span><span class='line'>    <span class="p">(</span><span class="k">fn </span><span class="p">[]</span>
+</span><span class='line'>      <span class="p">[</span><span class="ss">:div.form-group</span>
+</span><span class='line'>            <span class="p">[</span><span class="ss">:img</span> <span class="p">{</span><span class="ss">:src</span> <span class="o">@</span><span class="nv">upload-path</span> <span class="ss">:class</span> <span class="s">&quot;img-responsive&quot;</span><span class="p">}]</span>
+</span><span class='line'>            <span class="p">[</span><span class="nv">show-on-click</span>
+</span><span class='line'>             <span class="ss">:trigger</span>
+</span><span class='line'>             <span class="p">[</span><span class="nv">Button</span> <span class="p">{</span><span class="ss">:bs-style</span> <span class="s">&quot;primary&quot;</span><span class="p">}</span>
+</span><span class='line'>              <span class="p">[</span><span class="nv">FaIcon</span> <span class="s">&quot;upload&quot;</span><span class="p">]</span> <span class="p">]</span>
+</span><span class='line'>             <span class="ss">:body</span> <span class="p">[</span><span class="nv">file-form</span>
+</span><span class='line'>                    <span class="ss">:image</span> <span class="nv">upload-path</span>
+</span><span class='line'>                    <span class="ss">:column-name</span> <span class="nv">id</span>
+</span><span class='line'>                    <span class="ss">:form-data</span> <span class="nv">doc</span><span class="p">]]])))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defmethod </span><span class="nv">bind</span> <span class="ss">:image</span>
+</span><span class='line'>  <span class="p">[{</span><span class="ss">:keys</span> <span class="p">[</span><span class="nv">field</span> <span class="nv">id</span> <span class="nv">fmt</span><span class="p">]}</span> <span class="p">{</span><span class="ss">:keys</span> <span class="p">[</span><span class="nb">get </span><span class="nv">save!</span> <span class="nv">doc</span><span class="p">]}]</span>
+</span><span class='line'>  <span class="p">{</span><span class="ss">:value</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">value</span> <span class="p">(</span><span class="nb">or </span><span class="p">(</span><span class="nb">get </span><span class="nv">id</span><span class="p">)</span> <span class="s">&quot;&quot;</span><span class="p">)]</span>
+</span><span class='line'>            <span class="nv">value</span><span class="p">)</span>
+</span><span class='line'>   <span class="ss">:on-change</span> <span class="o">#</span><span class="p">(</span><span class="nf">save!</span> <span class="nv">id</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">%</span> <span class="p">(</span><span class="nf">value-of</span><span class="p">)</span> <span class="p">(</span><span class="nf">format-type</span> <span class="nv">field</span><span class="p">)))})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ClojureScript is basicly the same as Clojure, functional concepts in ClojureScript are a very good match for React&rsquo;s vision of components and immutability. And reagent could be your good choice to use React as a view layer in ClojureScript</p>
+
+<p>Recently Bootstrap has been the bread and butter of rapid web prototyping, we better  make most of the Bootstrap ecosystem. Funtunately, React-Bootstrap has rewritten most Bootstrap components with React. In addition, we can easily wrap the react-bootstrap with Reagent and have access to all the goodies and  we can wrap any other js libraries as well.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='clojurescript'><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">Button</span> <span class="p">(</span><span class="nf">reagent.core/adapt-react-class</span> <span class="p">(</span><span class="nb">aget </span><span class="nv">js/ReactBootstrap</span> <span class="s">&quot;Button&quot;</span><span class="p">)))</span>
+</span><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">TreeView</span> <span class="p">(</span><span class="nf">reagent.core/adapt-react-class</span> <span class="nv">js/TreeView</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With all the projects metioned above,front-end programming could become straightforward and fun!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clojure practice in 'Clojure Web Admin' - Incremental updates]]></title>
+    <link href="http://blog.kidzhou.me/blog/2015/12/29/incremental-updates/"/>
+    <updated>2015-12-29T04:14:12+13:00</updated>
+    <id>http://blog.kidzhou.me/blog/2015/12/29/incremental-updates</id>
+    <content type="html"><![CDATA[<p>When assign resources to a role, multiple resources should be edited in one http request.</p>
+
+<p>In back-end, we must tell  the new role-resources to create, the exist role-resources to update and the unuse role-resources to delete, which  could make create functiontoo complex.Acturally,it is a incremental updates solution, in <a href="">Clojure Web Admin</a> we add fingerprint column in tables in which need 。 Besides, fingerprint can be used in big data update.</p>
+
+<p>When using fingerprint, time of creating would increase due to the time of  fingerprint calculation, however time of updating would decrease because it only compare fingerprint not all the columns.</p>
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+</pre></td><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">assign-resources-to-role</span>
+</span><span class='line'>  <span class="s">&quot;Renew the permissions of the role:</span>
+</span><span class='line'><span class="s">     1 Get all the resources of current role.</span>
+</span><span class='line'><span class="s">     2 Delete the resources whose id is not in  params.</span>
+</span><span class='line'><span class="s">     3 Update the scope whose id is in db-resources  but scope is different.</span>
+</span><span class='line'><span class="s">     4 Create new resources in parmas whose id is not in the resources  for the role</span>
+</span><span class='line'><span class="s">  &quot;</span>
+</span><span class='line'>  <span class="p">[</span><span class="nv">id</span> <span class="nv">param</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">param</span> <span class="p">(</span><span class="nb">dissoc </span><span class="nv">param</span> <span class="ss">:current-user</span> <span class="ss">:s-scope</span><span class="p">)</span>
+</span><span class='line'>        <span class="nv">db-ress</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">k/select*</span> <span class="nv">role-resource</span><span class="p">)</span>
+</span><span class='line'>                         <span class="p">(</span><span class="nf">k/where</span> <span class="p">{</span><span class="ss">:role_id</span> <span class="nv">id</span><span class="p">})</span>
+</span><span class='line'>                         <span class="p">(</span><span class="nf">k/select</span><span class="p">))</span>
+</span><span class='line'>                     <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="nf">juxt</span> <span class="ss">:resource-id</span> <span class="ss">:scope</span><span class="p">)))</span>
+</span><span class='line'>        <span class="nv">db-ids</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">db-ress</span>
+</span><span class='line'>                    <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span> <span class="nv">r-id</span><span class="p">))</span>
+</span><span class='line'>                    <span class="p">(</span><span class="nf">set</span><span class="p">))</span>
+</span><span class='line'>        <span class="nv">param-ids</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">param</span>
+</span><span class='line'>                       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span> <span class="p">(</span><span class="nf">Integer/parseInt</span> <span class="nv">r-id</span><span class="p">)))</span>
+</span><span class='line'>                       <span class="p">(</span><span class="nf">set</span><span class="p">))</span>
+</span><span class='line'>        <span class="nv">del-data</span>  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">db-ress</span>
+</span><span class='line'>                       <span class="p">(</span><span class="nb">remove </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span> <span class="p">(</span><span class="nf">param-ids</span> <span class="nv">r-id</span><span class="p">))))</span>
+</span><span class='line'>        <span class="nv">exist-data</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">param</span>
+</span><span class='line'>                        <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span>
+</span><span class='line'>                                  <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">curr</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">db-ress</span>
+</span><span class='line'>                                                  <span class="p">(</span><span class="nb">filter </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">db-r-id</span> <span class="nv">db-s</span><span class="p">]]</span>
+</span><span class='line'>                                                            <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">Integer/parseInt</span> <span class="nv">r-id</span><span class="p">)</span> <span class="nv">db-r-id</span><span class="p">)))</span>
+</span><span class='line'>                                                  <span class="p">(</span><span class="nf">first</span><span class="p">))]</span>
+</span><span class='line'>                                    <span class="p">(</span><span class="nb">and </span><span class="p">(</span><span class="nf">db-ids</span> <span class="p">(</span><span class="nf">Integer/parseInt</span> <span class="nv">r-id</span><span class="p">))</span>
+</span><span class='line'>                                         <span class="p">(</span><span class="nb">not= </span><span class="nv">s</span> <span class="p">(</span><span class="nb">second </span><span class="nv">curr</span><span class="p">))</span> <span class="p">)))))</span>
+</span><span class='line'>        <span class="nv">new-data</span> <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">param</span>
+</span><span class='line'>                      <span class="p">(</span><span class="nb">remove </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span> <span class="p">(</span><span class="nf">db-ids</span> <span class="p">(</span><span class="nf">Integer/parseInt</span> <span class="nv">r-id</span><span class="p">)))))]</span>
+</span><span class='line'>    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">del-data</span>
+</span><span class='line'>         <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">k/delete*</span> <span class="nv">role-resource</span><span class="p">)</span>
+</span><span class='line'>                                 <span class="p">(</span><span class="nf">k/where</span> <span class="p">{</span><span class="ss">:role_id</span> <span class="nv">id</span> <span class="ss">:resource_id</span> <span class="nv">r-id</span> <span class="ss">:scope</span> <span class="nv">s</span><span class="p">})</span>
+</span><span class='line'>                                 <span class="p">(</span><span class="nf">k/delete</span><span class="p">))))</span>
+</span><span class='line'>         <span class="p">(</span><span class="nf">doall</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">new-data</span>
+</span><span class='line'>         <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span> <span class="p">[</span><span class="ss">:resource-id</span> <span class="nv">r-id</span> <span class="ss">:scope</span> <span class="nv">s</span> <span class="ss">:role-id</span> <span class="nv">id</span><span class="p">]))</span>
+</span><span class='line'>         <span class="p">(</span><span class="nf">doall</span><span class="p">)</span>
+</span><span class='line'>         <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="nb">partial apply </span><span class="nv">hash-map</span><span class="p">))</span>
+</span><span class='line'>         <span class="p">(</span><span class="o">#</span><span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">k/insert*</span> <span class="nv">role-resource</span><span class="p">)</span>
+</span><span class='line'>               <span class="p">(</span><span class="nf">k/values</span> <span class="nv">%</span><span class="p">)</span>
+</span><span class='line'>               <span class="p">(</span><span class="nf">k/insert</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="nv">exist-data</span>
+</span><span class='line'>         <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">r-id</span> <span class="nv">s</span><span class="p">]]</span>
+</span><span class='line'>                <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">k/update*</span> <span class="nv">role-resource</span><span class="p">)</span>
+</span><span class='line'>                    <span class="p">(</span><span class="nf">k/set-fields</span> <span class="p">{</span><span class="ss">:scope</span> <span class="nv">s</span><span class="p">})</span>
+</span><span class='line'>                    <span class="p">(</span><span class="nf">k/where</span> <span class="p">{</span><span class="ss">:role_id</span> <span class="nv">id</span>
+</span><span class='line'>                              <span class="ss">:resource_id</span> <span class="nv">r-id</span><span class="p">})</span>
+</span><span class='line'>                    <span class="p">(</span><span class="nf">k/update</span><span class="p">))))</span>
+</span><span class='line'>         <span class="p">(</span><span class="nf">doall</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">assign-resources-to-role</span>
+</span><span class='line'>  <span class="p">[</span><span class="nv">id</span> <span class="nv">param</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">fingerprint/init!</span> <span class="nv">role-resource</span> <span class="p">{</span><span class="ss">:role_id</span> <span class="nv">id</span><span class="p">})</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">-&gt;&gt;</span> <span class="p">(</span><span class="nb">dissoc </span><span class="nv">param</span> <span class="ss">:current-user</span> <span class="ss">:s-scope</span><span class="p">)</span>
+</span><span class='line'>       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">fn </span><span class="p">[[</span><span class="nv">res-id</span> <span class="nv">s</span><span class="p">]]</span> <span class="p">{</span><span class="ss">:resource-id</span> <span class="nv">res-id</span> <span class="ss">:scope</span> <span class="nv">s</span> <span class="ss">:role-id</span> <span class="nv">id</span><span class="p">}))</span>
+</span><span class='line'>       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="nb">partial </span><span class="nv">create-entity</span> <span class="nv">role-resource</span><span class="p">))</span>
+</span><span class='line'>       <span class="p">(</span><span class="nf">doall</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">fingerprint/remove-expired!</span> <span class="nv">role-resource</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Import code snippets in <code>create-entity</code>, see complete code <a href="https://github.com/b1412/clojure-web-admin/blob/master/src/clj/clojure_web/common/crud.clj#L214">here</a></p>
+
+<p>If this entity has fingerprint column, invoke create function in fingerprint.clj, otherwise call Korma directly.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="kd">defn </span><span class="nv">create-entity</span> <span class="p">[</span><span class="nv">entity</span> <span class="nv">params</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">log/debug</span>  <span class="s">&quot;create &quot;</span> <span class="p">(</span><span class="ss">:name</span> <span class="nv">entity</span><span class="p">)</span> <span class="s">&quot;  &quot;</span> <span class="nv">params</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">let </span><span class="p">[</span> <span class="nv">create</span> <span class="p">(</span><span class="nf">fn</span><span class="p">[</span><span class="nv">params</span><span class="p">](</span><span class="nb">-&gt; </span><span class="p">(</span><span class="nf">k/insert*</span> <span class="nv">entity</span><span class="p">)</span>
+</span><span class='line'>                     <span class="p">(</span><span class="nf">k/values</span> <span class="nv">params</span><span class="p">)</span>
+</span><span class='line'>                     <span class="p">(</span><span class="nf">k/insert</span><span class="p">)))]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">contains-column?</span> <span class="nv">entity</span> <span class="ss">:fingerprint</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">fingerprint/create</span> <span class="nv">entity</span> <span class="nv">params</span> <span class="nv">create</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">create</span> <span class="nv">params</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For example</p>
+
+<p><img src="http://blog.kidzhou.me/images/role-resources-before.png" alt="DNS configuration" /></p>
+
+<p><img src="http://blog.kidzhou.me/images/role-resources-after.png" alt="DNS configuration" /></p>
+
+<h2>Scenario</h2>
+
+<h2>Solution</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clojure practice in 'Clojure Web Admin' - Dasherize Korma]]></title>
+    <link href="http://blog.kidzhou.me/blog/2015/12/29/dasherize-korma/"/>
+    <updated>2015-12-29T03:23:19+13:00</updated>
+    <id>http://blog.kidzhou.me/blog/2015/12/29/dasherize-korma</id>
+    <content type="html"><![CDATA[<p>By default, Korma follows database convention using underscores  while Clojurians prefer kebab-case(lisp-case).</p>
+
+<p>In this post, the function/macro used in <a href="https://github.com/b1412/clojure-web-admin" title="https://github.com/b1412/clojure-web-admin">Clojure Web Admin</a> are dasherized by
+<a href="https://clojuredocs.org/clojure.core/alter-var-root" title="https://clojuredocs.org/clojure.core/alter-var-root"><code>alert-var-root</code></a></p>
+
+<p>For others functions/macros, it could be done by code snippets in this post with minor changes.</p>
+
+<p>Code in this post is <a href="https://gist.github.com/b1412/f5d90e604a72ef88318f" title="https://gist.github.com/b1412/f5d90e604a72ef88318f">here</a></p>
+
+<!--more-->
+
+
+<h2>defentity &amp; select &amp;  insert</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">table-&gt;entity</span> <span class="p">(</span><span class="nf">atom</span> <span class="p">{}))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">underscore-kw</span> <span class="p">(</span><span class="nb">comp keyword </span><span class="o">#</span><span class="p">(</span><span class="nf">clojure.string/replace</span> <span class="nv">%</span> <span class="s">&quot;-&quot;</span> <span class="s">&quot;_&quot;</span><span class="p">)</span> <span class="nv">name</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">dasherize-kw</span>  <span class="p">(</span><span class="nb">comp keyword </span><span class="o">#</span><span class="p">(</span><span class="nf">clojure.string/replace</span> <span class="nv">%</span> <span class="s">&quot;_&quot;</span> <span class="s">&quot;-&quot;</span><span class="p">)</span> <span class="nv">name</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">def </span><span class="nv">map-keys</span> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span> <span class="nv">m</span><span class="p">]</span> <span class="p">(</span><span class="nf">reduce-kv</span> <span class="o">#</span><span class="p">(</span><span class="nb">assoc </span><span class="nv">%1</span> <span class="p">(</span><span class="nf">f</span> <span class="nv">%2</span><span class="p">)</span> <span class="nv">%3</span><span class="p">)</span> <span class="p">{}</span> <span class="nv">m</span><span class="p">)))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">defmacro </span><span class="nv">defent</span> <span class="p">[</span><span class="nv">table</span> <span class="o">&amp;</span> <span class="nv">body</span><span class="p">]</span>
+</span><span class='line'>  <span class="o">`</span><span class="p">(</span><span class="k">do </span><span class="p">(</span><span class="kd">declare </span><span class="o">~</span><span class="nv">table</span><span class="p">)</span>
+</span><span class='line'>       <span class="p">(</span><span class="nf">defentity</span> <span class="o">~</span><span class="nv">table</span>
+</span><span class='line'>         <span class="p">(</span><span class="nf">prepare</span>   <span class="p">(</span><span class="nb">partial </span><span class="nv">map-keys</span> <span class="nv">underscore-kw</span><span class="p">))</span>
+</span><span class='line'>         <span class="p">(</span><span class="nf">transform</span> <span class="p">(</span><span class="nb">partial </span><span class="nv">map-keys</span> <span class="nv">dasherize-kw</span><span class="p">))</span>
+</span><span class='line'>         <span class="p">(</span><span class="nf">table</span> <span class="p">(</span><span class="nb">-&gt; </span><span class="p">(</span><span class="ss">:name</span> <span class="p">(</span><span class="nb">meta </span><span class="p">(</span><span class="k">var </span><span class="o">~</span><span class="nv">table</span><span class="p">)))</span>
+</span><span class='line'>                      <span class="p">(</span><span class="nf">clojure.string/replace</span> <span class="o">#</span><span class="s">&quot;-&quot;</span> <span class="s">&quot;_&quot;</span><span class="p">)</span>
+</span><span class='line'>                      <span class="p">(</span><span class="nf">keyword</span><span class="p">))))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='clojure'><span class='line'><span class="c1">;;; Map  the table &#39;role_resource&#39; in DB, get rid of `(table :role-resource :role_resource)`</span>
+</span><span class='line'><span class="p">(</span><span class="nf">defent</span> <span class="nv">role-resource</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;;; Use kebab-case in where conditon and get column names with kebab-case keyword.</span>
+</span><span class='line'><span class="p">(</span><span class="nb">select </span><span class="nv">role-resource</span> <span class="p">(</span><span class="nf">limit</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">; =&gt;({:id 1, :role-id 1, :resource-id 1, :scope &quot;system&quot;, :valid &quot;yes&quot;, :fingerprint &quot;f465893674d0f121bddb96698d6c55b5&quot;})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>where</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='clojure'><span class='line'><span class="p">(</span><span class="nf">alter-var-root</span>
+</span><span class='line'> <span class="p">(</span><span class="k">var </span><span class="nv">k/where*</span><span class="p">)</span>
+</span><span class='line'> <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">f</span><span class="p">]</span>
+</span><span class='line'>   <span class="o">#</span><span class="p">(</span><span class="nf">f</span> <span class="nv">%1</span>
+</span><span class='line'>       <span class="p">(</span><span class="nf">walk/prewalk</span>
+</span><span class='line'>        <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">e</span><span class="p">]</span>
+</span><span class='line'>          <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="ss">:korma.sql.utils/generated</span> <span class="nv">e</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">(</span><span class="nf">update</span> <span class="nv">e</span> <span class="ss">:korma.sql.utils/generated</span>
+</span><span class='line'>                    <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">k</span><span class="p">]</span> <span class="p">(</span><span class="nf">str/replace</span> <span class="nv">k</span> <span class="s">&quot;-&quot;</span> <span class="s">&quot;_&quot;</span><span class="p">)))</span>
+</span><span class='line'>            <span class="nv">e</span><span class="p">))</span> <span class="nv">%2</span><span class="p">))))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='clojure'><span class='line'><span class="c1">;;; Use kebab-case column names in where conditon</span>
+</span><span class='line'><span class="p">(</span><span class="nb">select </span><span class="nv">role-resource</span> <span class="p">(</span><span class="nf">where</span> <span class="p">{</span><span class="ss">:role-id</span> <span class="mi">2</span><span class="p">})</span> <span class="p">(</span><span class="nf">limit</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'><span class="c1">; =&gt;({:id 72, :role-id 2, :resource-id 58, :scope &quot;org&quot;, :valid &quot;yes&quot;, :fingerprint &quot;f20bafaae6285a3443cb6710421da306&quot;})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>References</h2>
+
+<ul>
+<li><a href="http://camdez.com/blog/2015/07/21/dasherize-korma-columns">http://camdez.com/blog/2015/07/21/dasherize-korma-columns</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Set up octopress on Ubuntu14.04/OS X10.10]]></title>
+    <link href="http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu/"/>
+    <updated>2015-12-24T04:36:53+13:00</updated>
+    <id>http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu</id>
+    <content type="html"><![CDATA[<p>This is a step-by-step tutorial that you can follow to create your own blog by
+octopress on Ubuntu14.04 and host on GitHub.</p>
+
+<p>In the tutorial,I will take my own <a href="http://blog.kidzhou.me" title="http://blog.kidzhou.me">blog</a> as an example.</p>
+
+<p>For more details about octopress, go to the <a href="http://octopress.org/docs" title="http://octopress.org/docs">official document</a>.</p>
+
+<!--more-->
+
+
+<h2>Prerequisites on Ubuntu</h2>
+
+<h3>Install git</h3>
+
+<p>The build-in git in Ubuntu is too old.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo add-apt-repository ppa:git-core/ppa
+</span><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install git</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install ruby</h3>
+
+<h4>Add the PPA and install the package</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-add-repository -y ppa:rael-gc/rvm
+</span><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install rvm</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Change your terminal window</h4>
+
+<p>Now, in order to always load rvm, change the Gnome Terminal to always perform a login.</p>
+
+<p>At terminal window, click <code>Edit</code> > <code>Profile Preferences</code>, click on <code>Title and Command</code> tab and check <code>Run command as login shell</code>.</p>
+
+<p><img src="http://blog.kidzhou.me/images/terminal.png" alt="Terminal Screenshot" /></p>
+
+<h4>Logout and login</h4>
+
+<p>A lot of changes were made and in order to properly get all them working, you need to login and logout. This requires not only close terminal but really logout and login again.</p>
+
+<h4>Install a ruby</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby
+</span><span class='line'>rvm rubygems latest </span></code></pre></td></tr></table></div></figure>
+
+
+<p>To verify</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ruby --version</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Prerequisites on OS X</h2>
+
+<h3>Install homebrew</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install git</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To verify</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git --version</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install ruby</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://get.rvm.io | bash -s stable --auto-dotfiles --autolibs=enable --ruby</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Set up octopress</h2>
+
+<h3>Install rake</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo gem install rake</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Setup octopress</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://GitHub.com/imathis/octopress.git octopress
+</span><span class='line'>cd octopress</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install octopress default theme</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo gem install bundler
+</span><span class='line'>bundle install
+</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install other theme (optional)</h3>
+
+<p>Install <a href="https://GitHub.com/erikzaadi/solarized-octopress-theme">solarized</a> theme instead of default theme for this blog.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>git clone http://GitHub.com/erikzaadi/solarized-octopress-theme .themes/solarized
+</span><span class='line'>rake install["solarized"]
+</span><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>NOTE:</strong> For zsh users, try <code>rake install\['solarized'\]</code></p>
+
+<p>For more themes, checkout <a href="https://GitHub.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes" title="https://GitHub.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes</a></p>
+
+<h3>GitHub setup</h3>
+
+<ul>
+<li><p>Create a GitHub account and my account is <a href="https://GitHub.com/b1412" title="https://GitHub.com/b1412"><code>b1412</code></a>.</p></li>
+<li><p>Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is <a href="https://GitHub.com/b1412/b1412.GitHub.io" title="https://GitHub.com/b1412/b1412.GitHub.io"><code>b1412.GitHub.io</code></a></p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_GitHub_pages</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The rake task will ask you for a URL of the GitHub repo. Copy the SSH or HTTPS URL from your newly created repository
+(in this case, <a href="https://GitHub.com/b1412/b1412.GitHub.io.git">https://GitHub.com/b1412/b1412.GitHub.io.git</a>) and paste it in as a response.</p>
+
+<p>This will:</p>
+
+<ul>
+<li>Ask for and store your GitHub Pages repository URL.</li>
+<li>Rename the remote pointing to imathis/octopress from &lsquo;origin&rsquo; to &lsquo;octopress&rsquo;</li>
+<li>Add your GitHub Pages repository as the default origin remote.</li>
+<li>Switch the active branch from master to source.</li>
+<li>Configure your blog&rsquo;s url according to your repository.</li>
+<li>Set up a master branch in the _deploy directory for deployment.</li>
+</ul>
+
+
+<h3>Create a new post</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post["Your Title"]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A new markdown file named <code>Your Title</code> is created in <code>source/_posts</code> folder.</p>
+
+<h3>Preview</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
+</span><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can preview these posts on your local server <a href="http://localhost:4000" title="http://localhost:4000">http://localhost:4000</a></p>
+
+<p><code>new_post</code> expects a naturally written title and strips out undesirable url characters when creating the filename.
+The default file extension for new posts is markdown but you can configure that in the Rakefile.</p>
+
+<h3>Deploy</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Do not forget</strong> to push source branch to GitHub.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add .
+</span><span class='line'>git commit -m 'your message'
+</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Config in Rakefile(optional)</h3>
+
+<h4>Change extension name of new posts</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>new_post_ext = "md"  # default new post file extension when using the new_post task</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3rd party settings in _config.yml(optional)</h3>
+
+<h4>GitHub repositories</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>GitHub_user: b1412
+</span><span class='line'>GitHub_repo_count: 3
+</span><span class='line'>GitHub_show_profile_link: true
+</span><span class='line'>GitHub_skip_forks: true</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The default value of GitHub_repo_count is 0, which would show all your repositories.</p>
+
+<h4>Add disqus comments</h4>
+
+<p>Register on <a href="https://disqus.com" title="https://disqus.com">Disqus</a></p>
+
+<p><img src="http://blog.kidzhou.me/images/disqus.png" alt="DNS configuration" /></p>
+
+<p>Copy the <code>unique Disqus URL</code> to disqus_short_name in <code>_config.yml</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>disqus_short_name: blogkidzhoume
+</span><span class='line'>disqus_show_comment_count: true</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Customize domain(optional)</h3>
+
+<h4>Add CNAME file</h4>
+
+<p>echo &lsquo;blog.kidzhou.me&rsquo; >> source/CNAME</p>
+
+<h4>Update DNS record</h4>
+
+<p>For this blog, I only add a sub-domain.</p>
+
+<p><img src="http://blog.kidzhou.me/images/dns.png" title="dns" alt="DNS configuration" /></p>
+
+<h4>Re-deploy</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
+</span><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Do not forget</strong>  <code>rake generate</code>, otherwise you may face 404 error using new domain.</p>
+
+<h3>References</h3>
+
+<ul>
+<li><p><a href="https://github.com/rvm/ubuntu_rvm">https://github.com/rvm/ubuntu_rvm</a></p></li>
+<li><p><a href="http://pangyi.github.io/blog/20150125/ubuntuzhong-octopressan-zhuang">http://pangyi.github.io/blog/20150125/ubuntuzhong-octopressan-zhuang</a></p></li>
+<li><p><a href="https://github.com/tommy351/Octopress-Theme-Slash">https://github.com/tommy351/Octopress-Theme-Slash</a></p></li>
+<li><p><a href="http://codelife.me/blog/2012/09/02/custom-domain-for-octopress">http://codelife.me/blog/2012/09/02/custom-domain-for-octopress</a></p></li>
+<li><p><a href="https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac">https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac</a></p></li>
+<li><p><a href="https://www.moncefbelyamani.com/how-to-install-and-configure-octopress-on-a-mac">https://www.moncefbelyamani.com/how-to-install-and-configure-octopress-on-a-mac</a></p></li>
+<li><p><a href="http://asaf.github.io/blog/2013/07/08/blogging-with-octopress-add-comments">http://asaf.github.io/blog/2013/07/08/blogging-with-octopress-add-comments</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

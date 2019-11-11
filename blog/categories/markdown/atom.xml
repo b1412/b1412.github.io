@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: markdown | Leon's Blog]]></title>
+  <link href="http://blog.kidzhou.me/blog/categories/markdown/atom.xml" rel="self"/>
+  <link href="http://blog.kidzhou.me/"/>
+  <updated>2019-11-04T17:55:40+13:00</updated>
+  <id>http://blog.kidzhou.me/</id>
+  <author>
+    <name><![CDATA[Leon Zhou]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Set up octopress on Ubuntu14.04/OS X10.10]]></title>
+    <link href="http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu/"/>
+    <updated>2015-12-24T04:36:53+13:00</updated>
+    <id>http://blog.kidzhou.me/blog/2015/12/24/set-up-octopress-on-ubuntu</id>
+    <content type="html"><![CDATA[<p>This is a step-by-step tutorial that you can follow to create your own blog by
+octopress on Ubuntu14.04 and host on GitHub.</p>
+
+<p>In the tutorial,I will take my own <a href="http://blog.kidzhou.me" title="http://blog.kidzhou.me">blog</a> as an example.</p>
+
+<p>For more details about octopress, go to the <a href="http://octopress.org/docs" title="http://octopress.org/docs">official document</a>.</p>
+
+<!--more-->
+
+
+<h2>Prerequisites on Ubuntu</h2>
+
+<h3>Install git</h3>
+
+<p>The build-in git in Ubuntu is too old.</p>
+
+<pre><code>sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+</code></pre>
+
+<h3>Install ruby</h3>
+
+<h4>Add the PPA and install the package</h4>
+
+<pre><code>sudo apt-add-repository -y ppa:rael-gc/rvm
+sudo apt-get update
+sudo apt-get install rvm
+</code></pre>
+
+<h4>Change your terminal window</h4>
+
+<p>Now, in order to always load rvm, change the Gnome Terminal to always perform a login.</p>
+
+<p>At terminal window, click <code>Edit</code> > <code>Profile Preferences</code>, click on <code>Title and Command</code> tab and check <code>Run command as login shell</code>.</p>
+
+<p><img src="/images/terminal.png" alt="Terminal Screenshot" /></p>
+
+<h4>Logout and login</h4>
+
+<p>A lot of changes were made and in order to properly get all them working, you need to login and logout. This requires not only close terminal but really logout and login again.</p>
+
+<h4>Install a ruby</h4>
+
+<pre><code>rvm install ruby
+rvm rubygems latest 
+</code></pre>
+
+<p>To verify</p>
+
+<pre><code>ruby --version
+</code></pre>
+
+<h2>Prerequisites on OS X</h2>
+
+<h3>Install homebrew</h3>
+
+<pre><code>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</code></pre>
+
+<h3>Install git</h3>
+
+<pre><code>brew install git
+</code></pre>
+
+<p>To verify</p>
+
+<pre><code>git --version
+</code></pre>
+
+<h3>Install ruby</h3>
+
+<pre><code>curl -L https://get.rvm.io | bash -s stable --auto-dotfiles --autolibs=enable --ruby
+</code></pre>
+
+<h2>Set up octopress</h2>
+
+<h3>Install rake</h3>
+
+<pre><code>sudo gem install rake
+</code></pre>
+
+<h3>Setup octopress</h3>
+
+<pre><code>git clone git://GitHub.com/imathis/octopress.git octopress
+cd octopress
+</code></pre>
+
+<h3>Install octopress default theme</h3>
+
+<pre><code>sudo gem install bundler
+bundle install
+rake install
+</code></pre>
+
+<h3>Install other theme (optional)</h3>
+
+<p>Install <a href="https://GitHub.com/erikzaadi/solarized-octopress-theme">solarized</a> theme instead of default theme for this blog.</p>
+
+<pre><code>cd octopress
+git clone http://GitHub.com/erikzaadi/solarized-octopress-theme .themes/solarized
+rake install["solarized"]
+rake generate
+</code></pre>
+
+<p><strong>NOTE:</strong> For zsh users, try <code>rake install\['solarized'\]</code></p>
+
+<p>For more themes, checkout <a href="https://GitHub.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes" title="https://GitHub.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes</a></p>
+
+<h3>GitHub setup</h3>
+
+<ul>
+<li><p>Create a GitHub account and my account is <a href="https://GitHub.com/b1412" title="https://GitHub.com/b1412"><code>b1412</code></a>.</p></li>
+<li><p>Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is <a href="https://GitHub.com/b1412/b1412.GitHub.io" title="https://GitHub.com/b1412/b1412.GitHub.io"><code>b1412.GitHub.io</code></a></p></li>
+</ul>
+
+
+<pre><code>rake setup_GitHub_pages
+</code></pre>
+
+<p>The rake task will ask you for a URL of the GitHub repo. Copy the SSH or HTTPS URL from your newly created repository
+(in this case, <a href="https://GitHub.com/b1412/b1412.GitHub.io.git">https://GitHub.com/b1412/b1412.GitHub.io.git</a>) and paste it in as a response.</p>
+
+<p>This will:</p>
+
+<ul>
+<li>Ask for and store your GitHub Pages repository URL.</li>
+<li>Rename the remote pointing to imathis/octopress from &lsquo;origin&rsquo; to &lsquo;octopress&rsquo;</li>
+<li>Add your GitHub Pages repository as the default origin remote.</li>
+<li>Switch the active branch from master to source.</li>
+<li>Configure your blog&rsquo;s url according to your repository.</li>
+<li>Set up a master branch in the _deploy directory for deployment.</li>
+</ul>
+
+
+<h3>Create a new post</h3>
+
+<pre><code>rake new_post["Your Title"]
+</code></pre>
+
+<p>A new markdown file named <code>Your Title</code> is created in <code>source/_posts</code> folder.</p>
+
+<h3>Preview</h3>
+
+<pre><code>rake generate
+rake preview
+</code></pre>
+
+<p>You can preview these posts on your local server <a href="http://localhost:4000" title="http://localhost:4000">http://localhost:4000</a></p>
+
+<p><code>new_post</code> expects a naturally written title and strips out undesirable url characters when creating the filename.
+The default file extension for new posts is markdown but you can configure that in the Rakefile.</p>
+
+<h3>Deploy</h3>
+
+<pre><code>rake deploy
+</code></pre>
+
+<p><strong>Do not forget</strong> to push source branch to GitHub.</p>
+
+<pre><code>git add .
+git commit -m 'your message'
+git push origin source
+</code></pre>
+
+<h3>Config in Rakefile(optional)</h3>
+
+<h4>Change extension name of new posts</h4>
+
+<pre><code>new_post_ext = "md"  # default new post file extension when using the new_post task
+</code></pre>
+
+<h3>3rd party settings in _config.yml(optional)</h3>
+
+<h4>GitHub repositories</h4>
+
+<pre><code>GitHub_user: b1412
+GitHub_repo_count: 3
+GitHub_show_profile_link: true
+GitHub_skip_forks: true
+</code></pre>
+
+<p>The default value of GitHub_repo_count is 0, which would show all your repositories.</p>
+
+<h4>Add disqus comments</h4>
+
+<p>Register on <a href="https://disqus.com" title="https://disqus.com">Disqus</a></p>
+
+<p><img src="/images/disqus.png" alt="DNS configuration" /></p>
+
+<p>Copy the <code>unique Disqus URL</code> to disqus_short_name in <code>_config.yml</code>.</p>
+
+<pre><code>disqus_short_name: blogkidzhoume
+disqus_show_comment_count: true
+</code></pre>
+
+<h3>Customize domain(optional)</h3>
+
+<h4>Add CNAME file</h4>
+
+<p>echo &lsquo;blog.kidzhou.me&rsquo; >> source/CNAME</p>
+
+<h4>Update DNS record</h4>
+
+<p>For this blog, I only add a sub-domain.</p>
+
+<p><img src="/images/dns.png" title="dns" alt="DNS configuration" /></p>
+
+<h4>Re-deploy</h4>
+
+<pre><code>rake generate
+rake deploy
+</code></pre>
+
+<p><strong>Do not forget</strong>  <code>rake generate</code>, otherwise you may face 404 error using new domain.</p>
+
+<h3>References</h3>
+
+<ul>
+<li><p><a href="https://github.com/rvm/ubuntu_rvm">https://github.com/rvm/ubuntu_rvm</a></p></li>
+<li><p><a href="http://pangyi.github.io/blog/20150125/ubuntuzhong-octopressan-zhuang">http://pangyi.github.io/blog/20150125/ubuntuzhong-octopressan-zhuang</a></p></li>
+<li><p><a href="https://github.com/tommy351/Octopress-Theme-Slash">https://github.com/tommy351/Octopress-Theme-Slash</a></p></li>
+<li><p><a href="http://codelife.me/blog/2012/09/02/custom-domain-for-octopress">http://codelife.me/blog/2012/09/02/custom-domain-for-octopress</a></p></li>
+<li><p><a href="https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac">https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac</a></p></li>
+<li><p><a href="https://www.moncefbelyamani.com/how-to-install-and-configure-octopress-on-a-mac">https://www.moncefbelyamani.com/how-to-install-and-configure-octopress-on-a-mac</a></p></li>
+<li><p><a href="http://asaf.github.io/blog/2013/07/08/blogging-with-octopress-add-comments">http://asaf.github.io/blog/2013/07/08/blogging-with-octopress-add-comments</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
