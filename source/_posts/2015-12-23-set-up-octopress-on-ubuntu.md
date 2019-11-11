@@ -124,16 +124,16 @@ For more themes, checkout [3rd Party Octopress Themes](https://GitHub.com/imathi
 
 ###GitHub setup
 
-* Create a GitHub account and my account is [`b1412`](https://GitHub.com/b1412 "https://GitHub.com/b1412").
+* Create a GitHub account and my account is [`b1412`](https://github.com/b1412 "https://github.com/b1412").
 
-* Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is [`b1412.GitHub.io`](https://GitHub.com/b1412/b1412.GitHub.io "https://GitHub.com/b1412/b1412.GitHub.io")
+* Create a new GitHub repository and name the repository with the format username.GitHub.io, where username is your GitHub user name or organization name.In this case, the repository is [`b1412.github.io`](https://github.com/b1412/b1412.github.io "https://github.com/b1412/b1412.github.io")
 
 ```
 rake setup_GitHub_pages
 ```
 
 The rake task will ask you for a URL of the GitHub repo. Copy the SSH or HTTPS URL from your newly created repository
-(in this case, https://GitHub.com/b1412/b1412.GitHub.io.git) and paste it in as a response.
+(in this case, git@github.com:b1412/b1412.github.io.git) and paste it in as a response.
 
 This will:
 
